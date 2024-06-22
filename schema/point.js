@@ -6,7 +6,7 @@ const Schema = mongoose.Schema;
 const point = new Schema({
     name: String,
     osrh: String,
-    noqat: String,
+    noqat: Number,
     lgnh: String,
     day: String
 })
