@@ -8,6 +8,7 @@ $.ajax({
     type: "POST",
     data:{kind:"noqat"},
     success: function (res) {
+        console.log(res)
         creat(res)
     },
     error: function (error) {
@@ -16,9 +17,10 @@ $.ajax({
 });
 
 function creat(data) {
+    
     let score = { "السودة": 0, "الحبلة": 0, "الفرعاء": 0, "الواديين": 0 }
 data.forEach(x => {
-    score[x.osrh] += +x.point
+    score[x.osrh] += +x.noqat
 })
 var xValues = [];
 var yValues = [];

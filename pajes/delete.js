@@ -56,9 +56,10 @@ function start(res) {
         let osrh = document.createElement("h3")
         osrh.innerText = x.osrh
         let point = document.createElement("h3")
-        point.innerText = x.point
+        point.innerText = x.noqat
+        console.log(x.noqat)
         let lgnh = document.createElement("h3")
-        point.innerText = x.lgnh
+        lgnh.innerText = x.lgnh
         nqth.appendChild(name)
         nqth.appendChild(osrh)
         nqth.appendChild(point)

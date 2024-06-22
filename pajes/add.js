@@ -10,7 +10,7 @@ $.ajax({
     data: { kind: "info" },
     success: function (res) {
         data = res
-        console.log(res)
+        console.log(data)
         start()
     },
     error: function (error) {
