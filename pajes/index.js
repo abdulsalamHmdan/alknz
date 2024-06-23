@@ -6,7 +6,7 @@ socket.on('x', (qr) => {
 $.ajax({
     url: "/data",
     type: "POST",
-    data:{kind:"noqat"},
+    data: { kind: "noqat" },
     success: function (res) {
         console.log(res)
         creat(res)
@@ -17,34 +17,33 @@ $.ajax({
 });
 
 function creat(data) {
-    
-    let score = { "السودة": 0, "الحبلة": 0, "الفرعاء": 0, "الواديين": 0 }
-data.forEach(x => {
-    score[x.osrh] += +x.noqat
-})
-var xValues = [];
-var yValues = [];
-var barColors = ["black", "green", "blue", "gray"];
-for (x in score) {
-    xValues.push(x)
-    yValues.push(score[x])
-}
 
-new Chart("myChart", {
-    type: "bar",
-    data: {
-        labels: xValues,
-        datasets: [{
-            backgroundColor: barColors,
-            data: yValues
-        }]
-    },
-    options: {
-        legend: { display: false },
-        title: {
-            display: true,
-            text: "ترتيب الأسر"
-        }
+    let score = { "السودة": 0, "الحبلة": 0, "الفرعاء": 0, "الواديين": 0 }
+    data.forEach(x => {
+        score[x.osrh] += +x.noqat
+    })
+    var xValues = [];
+    var yValues = [];
+    var barColors = ["black", "green", "blue", "gray"];
+    for (x in score) {
+        xValues.push(x)
+        yValues.push(score[x])
     }
-});
+    new Chart("myChart", {
+        type: "bar",
+        data: {
+            labels: xValues,
+            datasets: [{
+                backgroundColor: barColors,
+                data: yValues
+            }]
+        },
+        options: {
+            legend: { display: false },
+            title: {
+                display: true,
+                text: "ترتيب الأسر"
+            }
+        }
+    });
 }

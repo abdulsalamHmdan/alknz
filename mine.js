@@ -23,19 +23,26 @@ mongoose.connect(url).then(() => {
     console.log(err);
 });
 
+// let osr = ["السودة", "الحبلة", "الفرعاء", "الواديين"]
+// osr.forEach((x, i) => {
 
-
-//     const info = new Info(x);
+//     const info = new Info({
+//         name: "نقاط اسرية",
+//         id: (i + 1),
+//         osrh: x
+//     });
 //     info.save().then(() => {
 //         console.log("done")
 //     }).catch((err) => {
 //         console.log(err)
 //     });
 
+// })
+
 
 
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/pajes/report.html')
+    res.sendFile(__dirname + '/pajes/index.html')
 
 })
 
@@ -44,7 +51,6 @@ app.get('/insertion', (req, res) => {
 })
 app.post('/insertion', (req, res) => {
     let x = req.body;
-    // console.log(x)
     const point = new Point(x);
     point.save().then(() => {
         res.json("done")
@@ -66,18 +72,6 @@ app.post('/delete', (req, res) => {
     }).catch((err) => {
         res.json(err)
     });
-
-    // MongoClient.connect(url, function (err, db) {
-    //     if (err) throw err;
-    //     var dbo = db.db("alknz");
-    //     dbo.collection("noqat").deleteOne().then(x => {
-    //         res.json("done")
-    //     }).catch(err => {
-    //         console.log(err)
-
-    //     })
-
-    // });
 })
 app.post('/deleteAll', (req, res) => {
 
@@ -94,19 +88,37 @@ app.post('/deleteToday', (req, res) => {
     }).catch((err) => {
         res.json(err)
     });
-    // MongoClient.connect(url, function (err, db) {
-    //     if (err) throw err;
-    //     var dbo = db.db("alknz");
-    //     dbo.collection("noqat").deleteMany({ day: x }).then(x => {
-    //         res.json("done")
-    //     }).catch(err => {
-    //         console.log(err)
-
-    //     })
-
-    // });
 })
 
+app.get('/aggregate', async (req, res) => {
+    res.sendFile(__dirname + '/pajes/aggregate.html')
+})
+
+
+app.post('/aggregate', async (req, res) => {
+    let x = await Point.aggregate([
+        {
+            $match: {
+                "day": "الأحد",
+                name: { $not: { $regex: "نقاط اسرية" } }
+            }
+        },
+        {
+            $group: {
+                _id: "$name",
+                count: {
+                    $sum: "$noqat"
+                }
+            }
+        }, {
+            $sort: {
+                count: -1
+            }
+        }
+    ])
+
+    res.json(x)
+})
 
 
 
@@ -130,7 +142,6 @@ app.post('/data', async (req, res) => {
 
         })
     }
-    // console.log(arr)
     res.json(arr);
 })
 

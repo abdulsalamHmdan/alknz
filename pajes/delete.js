@@ -10,7 +10,6 @@ document.querySelector(".all").addEventListener('click', () => {
         url: "/deleteAll",
         type: "POST",
         success: function (res) {
-            // alert("tm al7thf")
             socket.emit('x');
         },
         error: function (error) {
@@ -26,7 +25,6 @@ document.querySelector(".today").addEventListener('click', () => {
         type: "POST",
         data: { day: day },
         success: function (res) {
-            // alert("tm al7thf")
             socket.emit('x');
         },
         error: function (error) {
@@ -51,6 +49,7 @@ $.ajax({
 function start(res) {
     res.forEach(x => {
         let nqth = document.createElement("div")
+        nqth.className = 'nqth'
         let name = document.createElement("h3")
         name.innerText = x.name
         let osrh = document.createElement("h3")
@@ -73,7 +72,6 @@ function start(res) {
                 type: "POST",
                 data: { id: x["_id"] },
                 success: function (res) {
-                    // alert("tm al7thf")
                     socket.emit('x');
                 },
                 error: function (error) {
