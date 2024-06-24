@@ -16,7 +16,7 @@ const url = "mongodb+srv://family:aS0507499583@cluster0.dvljyns.mongodb.net/alkn
 const url2 = "mongodb+srv://family:aS0507499583@cluster0.dvljyns.mongodb.net/?retryWrites=true&w=majority"
 app.use(express.static(path.join(__dirname, 'pajes')));
 app.use(express.urlencoded({ extended: true }))
-
+let theDay = 'aa';
 mongoose.connect(url).then(() => {
     console.log("connect")
 }).catch((err) => {
@@ -94,12 +94,16 @@ app.get('/aggregate', async (req, res) => {
     res.sendFile(__dirname + '/pajes/aggregate.html')
 })
 
+app.get('/aggregate2/:day', async (req, res) => {
+    theDay = req.params.day
+    res.sendFile(__dirname + '/pajes/aggregate2.html')
+})
 
 app.post('/aggregate', async (req, res) => {
     let x = await Point.aggregate([
         {
             $match: {
-                "day": "الأحد",
+                "day": req.body.day,
                 name: { $not: { $regex: "نقاط اسرية" } }
             }
         },
@@ -120,7 +124,30 @@ app.post('/aggregate', async (req, res) => {
     res.json(x)
 })
 
+app.post('/aggregate2', async (req, res) => {
+    let x = await Point.aggregate([
+        {
+            $match: {
+                "day": theDay,
+                name: { $not: { $regex: "نقاط اسرية" } }
+            }
+        },
+        {
+            $group: {
+                _id: "$name",
+                count: {
+                    $sum: "$noqat"
+                }
+            }
+        }, {
+            $sort: {
+                count: -1
+            }
+        }
+    ])
 
+    res.json(x)
+})
 
 app.post('/data', async (req, res) => {
     let x = req.body.kind;
