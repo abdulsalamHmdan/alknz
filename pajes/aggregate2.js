@@ -2,14 +2,13 @@ let socket = io()
 socket.on('x', (qr) => {
     location.reload()
 })
-const weekday = ["الأحد", "الأثنين", "الثلاثاء", "الأربعاء", "الخميس", "الجمعة", "السبت"];
-const d = new Date();
-let day = weekday[d.getDay()];
+// const weekday = ["الأحد", "الأثنين", "الثلاثاء", "الأربعاء", "الخميس", "الجمعة", "السبت"];
+// const d = new Date();
+// let day = weekday[d.getDay()];
 
 $.ajax({
-    url: "/aggregate",
+    url: "/aggregate2",
     type: "POST",
-    data: { day: day },
     success: function (res) {
         console.log(res)
         creat(res)
