@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدرجات</title>
+    <link rel="stylesheet" href="add.css">
+    <script src="https://unpkg.com/html5-qrcode"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+    <div id="qr-reader" style="width:500px"></div>
+    <div id="qr-reader-results"></div>
+    <h3 class="name">اسم الطالب</h3>
+    <h3 class="osrh"></h3>
+    <h3>الدرجة</h3>
+    <input class="noqat" type="number">
+    <h3>اللجنة</h3>
+    <select class="lgnh">
+        <option value="غير محدد">غير محدد</option>
+        <option value="الثقافية">الثقافية</option>
+        <option value="العلمية">العلمية</option>
+        <option value="الرياضية">الرياضية</option>
+        <option value="النظام">النظام</option>
+        <option value="الإعلامية">الإعلامية</option>
+        <option value="الإجتماعية">الإجتماعية</option>
+        <option value="الإمارة">الإمارة</option>
+        <option value="التحفيز">التحفيز</option>
+    </select>
+    <button>ادخال</button>
+</body>
+<script defer src="add.js"></script>
+
+</html>
