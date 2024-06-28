@@ -128,7 +128,6 @@ app.post('/aggregate2', async (req, res) => {
     let x = await Point.aggregate([
         {
             $match: {
-                "day": theDay,
                 name: { $not: { $regex: "نقاط اسرية" } }
             }
         },
