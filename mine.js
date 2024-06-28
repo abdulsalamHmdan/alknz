@@ -94,7 +94,7 @@ app.get('/aggregate', async (req, res) => {
     res.sendFile(__dirname + '/pajes/aggregate.html')
 })
 
-app.get('/aggregate2/:day', async (req, res) => {
+app.get('/aggregate/:day', async (req, res) => {
     theDay = req.params.day
     res.sendFile(__dirname + '/pajes/aggregate2.html')
 })
@@ -103,7 +103,6 @@ app.post('/aggregate', async (req, res) => {
     let x = await Point.aggregate([
         {
             $match: {
-                "day": req.body.day,
                 name: { $not: { $regex: "نقاط اسرية" } }
             }
         },
@@ -128,6 +127,7 @@ app.post('/aggregate2', async (req, res) => {
     let x = await Point.aggregate([
         {
             $match: {
+                "day": theDay,
                 name: { $not: { $regex: "نقاط اسرية" } }
             }
         },
