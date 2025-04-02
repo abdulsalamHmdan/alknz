@@ -1,0 +1,15 @@
+html,body{
+    height: 99vh;
+}
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+img{
+    border-radius: 50%;
+    width: 400px;
+}

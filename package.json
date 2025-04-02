@@ -11,7 +11,5 @@
     "mongodb": "^4.9.1",
     "mongoose": "^8.4.3",
     "nodemon": "^3.1.4",
-    "socket.io": "^4.7.2",
-    "whatsapp-web.js": "https://github.com/Julzk/whatsapp-web.js/tarball/jkr_hotfix_8"
-  }
+    "socket.io": "^4.7.2"  }
 }
