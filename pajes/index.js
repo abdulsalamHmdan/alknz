@@ -18,13 +18,13 @@ $.ajax({
 
 function creat(data) {
 
-    let score = { "السودة": 0, "الحبلة": 0, "الفرعاء": 0, "الواديين": 0 }
+    let score = { "اجى": 0, "مشار": 0, "توارن": 0 }
     data.forEach(x => {
         score[x.osrh] += +x.noqat
     })
     var xValues = [];
     var yValues = [];
-    var barColors = ["black", "green", "blue", "gray"];
+    var barColors = ["black", "green", "blue"];
     for (x in score) {
         xValues.push(x)
         yValues.push(score[x])

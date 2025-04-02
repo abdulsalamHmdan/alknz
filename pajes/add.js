@@ -11,6 +11,9 @@ $.ajax({
     success: function (res) {
         data = res
         console.log(data)
+        data.forEach(x =>{
+            document.querySelector("#ss").innerHTML += `<option value= ${x["id"]} >${x["name"]}</option>`
+          })
         start()
     },
     error: function (error) {
@@ -19,7 +22,20 @@ $.ajax({
 });
 
 
-
+let st = document.querySelector(".input");
+st.addEventListener('change', () => {
+    // if (data.map(x => x["id"]).includes(decodedText)) {
+        let info = data.find(x => x.id == st.value)
+        console.log(info)
+        studentName = info["name"];
+        osrh = info["osrh"]
+        document.querySelector(".lgnh").value = "غير محدد"
+        document.querySelector(".name").innerHTML = `اسم الطالب :${studentName}`
+        document.querySelector(".osrh").innerHTML = `الأسرة :${osrh}`
+    // } else {
+    //     alert("no student")
+    // }
+})
 
 
 document.querySelector("button").addEventListener('click', () => {
